@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방아실 돼지집 - BANGASIL PREMIUM</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#FCFAF7', // 깨끗하고 우아한 아이보리 화이트
+                            sand: '#F5EFEB', // 부드러운 오가닉 샌드 아이보리
+                            dark: '#2D231A', // 고급스럽고 깊은 참숯 브라운 (가독성 텍스트용)
+                            gold: '#C5A880', // 세련된 프리미엄 골드
+                            goldhover: '#AB8E66', // 호버링 골드
+                            gray: '#5C544E' // 서브 텍스트용 웜 그레이
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif KR', 'Georgia', 'serif'],
+                        sans: ['Pretendard', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts (Noto Serif KR) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Custom scrollbar to match warm light theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FCFAF7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E6DFD9;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A880;
+        }
+
+        /* Gold glow for bright background */
+        .gold-glow {
+            text-shadow: 0 0 10px rgba(197, 168, 128, 0.2);
+        }
+
+        /* Subtle scroll animation reveal class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased overflow-x-hidden">
+
+<!-- Navigation Menu -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-brand-light/80 backdrop-blur-md border-b border-brand-sand/50" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Logo / Brand Signature -->
+        <a href="#" class="flex items-center space-x-3 group">
+            <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center bg-white shadow-sm transition-transform duration-500 group-hover:rotate-180">
+                <svg class="w-5 h-5 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <div>
+                <span class="font-serif font-bold text-xl tracking-widest text-brand-dark block leading-tight">방아실 돼지집</span>
+                <span class="text-[9px] uppercase tracking-widest text-brand-gold font-bold block">Bangasil Premium since 1992</span>
+            </div>
+        </a>
+
+        <!-- Desktop Menu items -->
+        <div class="hidden md:flex items-center space-x-10 font-semibold tracking-wide text-xs text-brand-gray">
+            <a href="#heritage" class="hover:text-brand-gold transition-colors">헤리티지</a>
+            <a href="#menu" class="hover:text-brand-gold transition-colors">시그니처 메뉴</a>
+            <a href="#customizer" class="hover:text-brand-gold transition-colors">두께 시뮬레이터</a>
+            <a href="#location" class="hover:text-brand-gold transition-colors">오시는 길</a>
+        </div>
+
+        <!-- Call Action (Replaced reservation with active contact) -->
+        <div class="hidden md:flex items-center space-x-4">
+            <a href="tel:0437325653" class="px-5 py-2.5 rounded-full bg-brand-dark text-brand-light hover:bg-brand-gold hover:text-brand-dark transition-all duration-300 text-xs font-bold tracking-wider shadow-sm flex items-center">
+                <i class="fa-solid fa-phone mr-1.5"></i> 043-732-5653
+            </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="md:hidden text-brand-dark focus:outline-none" onclick="toggleMobileMenu()">
+            <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Slideover Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-brand-light border-t border-brand-sand px-6 py-6 space-y-4">
+        <a href="#heritage" onclick="toggleMobileMenu()" class="block text-base font-serif text-brand-dark hover:text-brand-gold">헤리티지</a>
+        <a href="#menu" onclick="toggleMobileMenu()" class="block text-base font-serif text-brand-dark hover:text-brand-gold">시그니처 메뉴</a>
+        <a href="#customizer" onclick="toggleMobileMenu()" class="block text-base font-serif text-brand-dark hover:text-brand-gold">두께 시뮬레이터</a>
+        <a href="#location" onclick="toggleMobileMenu()" class="block text-base font-serif text-brand-dark hover:text-brand-gold">오시는 길</a>
+        <div class="pt-4 border-t border-brand-sand">
+            <a href="tel:0437325653" class="w-full py-3 rounded-full bg-brand-dark text-white font-bold text-sm text-center flex items-center justify-center">
+                <i class="fa-solid fa-phone mr-2"></i> 043-732-5653 (전화 연결)
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center bg-brand-light pt-20 overflow-hidden">
+    <!-- Fluid background layout with warm ivory and subtle radial accents -->
+    <div class="absolute inset-0 z-0">
+        <svg class="absolute inset-0 w-full h-full opacity-60" preserveAspectRatio="none" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="heroGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                    <stop offset="0%" stop-color="#FDFBFA" stop-opacity="1" />
+                    <stop offset="100%" stop-color="#F2EDE7" stop-opacity="1" />
+                </radialGradient>
+            </defs>
+            <rect width="100" height="100" fill="url(#heroGrad)"/>
+            <circle cx="10" cy="10" r="40" fill="#C5A880" opacity="0.06" filter="blur(50px)" />
+            <circle cx="90" cy="80" r="30" fill="#EADBC8" opacity="0.1" filter="blur(60px)" />
+        </svg>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center flex flex-col items-center justify-center">
+        <!-- Floating Tagline -->
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full border border-brand-gold/30 bg-white text-brand-gold text-xs tracking-widest uppercase mb-6 font-bold shadow-sm">
+            <i class="fa-solid fa-award mr-2"></i> 대청호 30년 전통, 원육 가치의 영광스러운 보존
+        </span>
+
+        <!-- Main Heading -->
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-brand-dark mb-6 leading-[1.2]">
+            가장 투박하지만,<br class="hidden sm:inline">
+            <span class="text-brand-gold italic font-light font-serif">가장 완벽한</span> 생고기의 극치
+        </h1>
+
+        <!-- Premium Subdescription -->
+        <p class="max-w-2xl text-brand-gray text-sm sm:text-base md:text-lg font-light leading-relaxed mb-10">
+            대청호의 평화를 머금은 충북 옥천군 방아실길에서 1992년부터 완벽을 고수해 온 원칙.<br>
+            한 번도 얼리지 않은 최정상급 생고기의 쫄깃한 가치와 아삭한 미각을 선사합니다.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-row gap-3 sm:gap-6 w-full max-w-xl justify-center px-2">
+            <a href="tel:0437325653" class="flex-1 sm:flex-initial px-4 sm:px-8 py-3.5 sm:py-4 rounded-full bg-brand-gold text-white font-bold hover:bg-brand-goldhover transition-all duration-300 shadow-md shadow-brand-gold/20 transform hover:-translate-y-0.5 tracking-wider text-[11px] sm:text-sm flex items-center justify-center whitespace-nowrap">
+                <i class="fa-solid fa-phone mr-1.5 sm:mr-2"></i> 매장 유선 문의
+            </a>
+            <a href="#location" class="flex-1 sm:flex-initial px-4 sm:px-8 py-3.5 sm:py-4 rounded-full border border-brand-gold/40 bg-white text-brand-gold font-bold hover:bg-brand-sand transition-all duration-300 tracking-wider text-[11px] sm:text-sm flex items-center justify-center shadow-sm whitespace-nowrap">
+                찾아오시는 길 안내 <i class="fa-solid fa-arrow-down ml-1.5 sm:ml-2 text-[10px] sm:text-xs"></i>
+            </a>
+        </div>
+
+        <!-- Social Proof Stats Mini Grid -->
+        <div class="grid grid-cols-3 gap-6 sm:gap-12 mt-20 pt-10 border-t border-brand-sand/70 w-full max-w-4xl text-left">
+            <div>
+                <span class="block text-brand-dark font-serif text-3xl sm:text-4xl font-bold">1992</span>
+                <span class="text-xs text-brand-gray uppercase tracking-widest block mt-1">개업년도 (대청호 정통)</span>
+            </div>
+            <div>
+                <span class="block text-brand-dark font-serif text-3xl sm:text-4xl font-bold">34년</span>
+                <span class="text-xs text-brand-gray uppercase tracking-widest block mt-1">무냉동 원육 고집</span>
+            </div>
+            <div>
+                <span class="block text-brand-dark font-serif text-3xl sm:text-4xl font-bold">4.8 / 5</span>
+                <span class="text-xs text-brand-gray uppercase tracking-widest block mt-1">네이버 만족도 (충북 옥천 명물)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scrolling downward indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-70">
+        <span class="text-[9px] uppercase tracking-widest text-brand-gray mb-2">SCROLL TO DETECT</span>
+        <div class="w-[1px] h-12 bg-brand-sand relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1/2 bg-brand-gold animate-bounce"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Brand Heritage Section -->
+<section id="heritage" class="relative py-24 bg-white overflow-hidden border-t border-brand-sand/50">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            
+            <!-- Left side: Story & Philosophy -->
+            <div class="space-y-8 reveal">
+                <div class="space-y-3">
+                    <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block">The Essence of Bangasil</span>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-extrabold text-brand-dark leading-tight">
+                        자연을 품고 썰어낸<br>
+                        진짜 생고기의 아삭함
+                    </h2>
+                </div>
+                
+                <p class="text-brand-gray leading-relaxed font-light text-sm sm:text-base">
+                    많은 육류 전문점들이 세련된 플레이팅과 강한 양념으로 단점을 감출 때, 방아실 돼지집은 오로지 <strong class="text-brand-dark font-semibold">고기의 날것 그대로의 본질</strong> 하나에 집중합니다. 옥천 대청호의 그림 같은 산자락 아래 위치하여, 전국 식도락가의 발길을 당겨온 비결은 도축 단계부터 철저하게 고수해 온 <span class="text-brand-gold font-semibold">‘초신선 무냉동 원칙’</span>입니다.
+                </p>
+
+                <!-- Premium Accents Cards -->
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4 p-5 rounded-2xl bg-brand-light border border-brand-sand shadow-sm">
+                        <div class="p-3 bg-brand-sand rounded-xl text-brand-gold mt-1">
+                            <i class="fa-solid fa-fire-burner text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-bold text-brand-dark text-base">절대 얼리지 않는 최상의 돼지 원육</h4>
+                            <p class="text-xs text-brand-gray mt-1">도축 직후의 국내산 고품질 원육만을 엄선하여 상에 올립니다. 굽는 과정에서 손실되는 육즙을 막아내어, 씹을 때 고소하고 촉촉함의 정수를 경험할 수 있습니다.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start space-x-4 p-5 rounded-2xl bg-brand-light border border-brand-sand shadow-sm">
+                        <div class="p-3 bg-brand-sand rounded-xl text-brand-gold mt-1">
+                            <i class="fa-solid fa-scissors text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-bold text-brand-dark text-base">당일 정육, 투박한 뭉턱이 썰기</h4>
+                            <p class="text-xs text-brand-gray mt-1">기계식 슬라이스를 거부하고 투박하게 덩어리째 썰어내는 고유의 손맛을 고수합니다. 고기의 씹는 결이 그대로 살아나 더욱 독보적인 아삭함을 자랑합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right side: Visual Statement of Quality -->
+            <div class="relative reveal lg:pl-10">
+                <div class="absolute -inset-2 rounded-3xl border border-brand-gold/30 transform rotate-1.5 pointer-events-none"></div>
+                
+                <div class="relative rounded-3xl bg-brand-light border border-brand-sand p-8 sm:p-12 overflow-hidden shadow-xl text-center">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-brand-sand/40 rounded-full blur-3xl"></div>
+                    
+                    <div class="w-16 h-16 rounded-full border border-brand-gold/30 flex items-center justify-center bg-white mb-6 mx-auto shadow-sm">
+                        <i class="fa-solid fa-signature text-brand-gold text-xl"></i>
+                    </div>
+
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-dark mb-2">"정직을 넘어서는 타협은 없습니다"</h3>
+                    <p class="text-xs text-brand-gold font-bold uppercase tracking-widest mb-6">Master Chef's Manifesto</p>
+                    
+                    <blockquote class="italic text-brand-gray text-sm leading-relaxed mb-6 font-light">
+                        "가장 훌륭한 고기는 화려한 시즈닝도, 부가적인 가공도 거부합니다. 1992년부터 이어져 온 방아실의 시골 풍미는 자연 속 가장 깨끗하고 순수한 한 입을 약속합니다."
+                    </blockquote>
+
+                    <!-- Signature Signoff -->
+                    <div class="text-center pt-6 border-t border-brand-sand">
+                        <span class="font-serif text-brand-dark font-bold block text-sm">방아실 돼지집 마스터 푸드 디렉터</span>
+                        <span class="text-[10px] text-brand-gray tracking-wider uppercase">AUTHENTIC TASTE OF OKCHEON</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Menu Showcase -->
+<section id="menu" class="relative py-24 bg-brand-light overflow-hidden border-t border-brand-sand/30">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block mb-2">Authentic Board from 다운로드.jpg</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-extrabold text-brand-dark mb-4">방아실 차림표</h2>
+            <p class="text-brand-gray text-sm font-light">
+                실제 매장에서 제공하는 신뢰의 먹거리입니다. 불필요한 수식을 걷어내어 오직 고기와 근본적인 찌개, 정갈한 주류로만 가득 채웠습니다.
+            </p>
+        </div>
+
+        <!-- Menu Real Layout Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Hero Menu Item: 생고기 (7 cols) with actual image integration -->
+            <div class="lg:col-span-7 group rounded-3xl bg-white border border-brand-sand p-6 sm:p-8 flex flex-col justify-between hover:border-brand-gold/50 transition-all duration-300 shadow-sm relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-sand/20 rounded-full blur-3xl group-hover:bg-brand-gold/10 transition-colors pointer-events-none"></div>
+                <div class="flex flex-col md:flex-row gap-6 h-full items-stretch">
+                    <!-- Meat Image Display using 다운로드 (2).jpg -->
+                    <div class="w-full md:w-5/12 relative rounded-2xl overflow-hidden border border-brand-sand shadow-sm min-h-[180px] flex">
+                        <img src="다운로드 (2).jpg" alt="방아실 돼지집 생고기 실제 비주얼" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='https://placehold.co/600x600/F5EFEB/C5A880?text=Premium+Pork'">
+                        <div class="absolute top-3 left-3 bg-brand-dark/80 backdrop-blur-sm text-white px-2.5 py-1 rounded text-[9px] font-bold tracking-widest uppercase">
+                            실제 생고기 원육
+                        </div>
+                    </div>
+                    
+                    <!-- Meat Text Details -->
+                    <div class="w-full md:w-7/12 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-widest bg-brand-dark text-white uppercase">
+                                    Signature Menu
+                                </span>
+                                <span class="text-[11px] text-brand-gold font-bold">국내산 100%</span>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-3 gap-1">
+                                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-brand-dark tracking-tight">생고기</h3>
+                                <div class="text-right">
+                                    <span class="text-brand-gold font-serif font-extrabold text-2xl sm:text-3xl">13,000 <span class="text-base font-sans text-brand-dark">₩</span></span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                <span class="px-2 py-0.5 bg-brand-light text-brand-gray text-[10px] sm:text-xs rounded-lg border border-brand-sand font-medium">1인분 듬직한 250g</span>
+                                <span class="px-2 py-0.5 bg-brand-light text-brand-gray text-[10px] sm:text-xs rounded-lg border border-brand-sand font-medium">100g당 5,200원</span>
+                            </div>
+
+                            <p class="text-[12px] sm:text-xs text-brand-gray leading-relaxed font-light">
+                                오직 국내산 생돼지고기만을 취급하며, 기계식 절단을 거치지 않고 장인의 손끝으로 뭉텅뭉텅 썰어내어 육질의 쫀득함과 아삭함이 완전히 다릅니다. 참숯 위에서 지글지글 구워질 때 생고기의 진짜 가치가 드러납니다.
+                            </p>
+                        </div>
+                        
+                        <div class="pt-4 mt-4 border-t border-brand-sand/60">
+                            <button onclick="scrollToCustomizer()" class="w-full py-2 rounded-full bg-brand-sand text-brand-dark hover:bg-brand-gold hover:text-white transition-all text-[11px] font-bold tracking-wider flex items-center justify-center">
+                                두께 맞춤 굽기법 보기 <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center justify-between pt-4 mt-4 border-t border-brand-sand text-[11px] text-brand-gray italic font-light">
+                    <span><i class="fa-solid fa-circle-check text-brand-gold mr-1"></i>테이블당 기본 제공되는 참숯 그릴링 추천</span>
+                </div>
+            </div>
+
+            <!-- Side & Meal Items: 된장찌개 & 공기밥 (5 cols) -->
+            <div class="lg:col-span-5 flex flex-col gap-6">
+                <!-- 된장찌개 -->
+                <div class="group rounded-3xl bg-white border border-brand-sand p-6 flex-1 flex flex-col justify-between hover:border-brand-gold/50 transition-all duration-300 shadow-sm">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <span class="text-[10px] text-brand-gold font-bold uppercase tracking-wider block mb-1">Traditional Meal</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-dark group-hover:text-brand-gold transition-colors">된장찌개</h3>
+                            </div>
+                            <span class="text-brand-dark font-serif font-bold text-lg">1,000₩</span>
+                        </div>
+                        <p class="text-xs text-brand-gray leading-relaxed font-light">
+                            시골 재래식 구수한 된장의 풍미를 담아 뚝배기에 보글보글 끓여낸 찌개입니다. 단돈 천 원으로 선사하는 방아실 식탁의 든든한 마무리 파트너입니다.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-brand-sand flex justify-between items-center">
+                        <span class="text-[10px] text-brand-gray font-bold tracking-wider uppercase">국내산 식재료 사용</span>
+                        <span class="text-[10px] bg-brand-sand px-2.5 py-0.5 text-brand-dark rounded-full font-bold">인기 후식</span>
+                    </div>
+                </div>
+
+                <!-- 공기밥 -->
+                <div class="group rounded-3xl bg-white border border-brand-sand p-6 flex-1 flex flex-col justify-between hover:border-brand-gold/50 transition-all duration-300 shadow-sm">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <span class="text-[10px] text-brand-gold font-bold uppercase tracking-wider block mb-1">Freshly Cooked</span>
+                                <h3 class="font-serif text-xl font-bold text-brand-dark group-hover:text-brand-gold transition-colors">공기밥</h3>
+                            </div>
+                            <span class="text-brand-dark font-serif font-bold text-lg">1,000₩</span>
+                        </div>
+                        <p class="text-xs text-brand-gray leading-relaxed font-light">
+                            엄선한 국내산 쌀로 갓 지어 고슬고슬하고 찰기가 도는 밥 한 공기입니다. 구수한 된장찌개와 노릇하게 구워진 생고기를 얹어 드시면 꿀맛입니다.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-brand-sand flex justify-between items-center">
+                        <span class="text-[10px] text-brand-gray font-bold tracking-wider uppercase">100% 국내산 쌀</span>
+                        <span class="text-[10px] text-brand-gray">기본 공기 제공</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recommended Drinks Section -->
+        <div class="mt-12 bg-white rounded-3xl border border-brand-sand p-8 shadow-sm reveal">
+            <div class="flex items-center space-x-3 mb-8 border-b border-brand-sand pb-4">
+                <div class="w-8 h-8 rounded-full bg-brand-sand flex items-center justify-center text-brand-gold">
+                    <i class="fa-solid fa-wine-glass"></i>
+                </div>
+                <h3 class="font-serif text-xl font-bold text-brand-dark">방아실 추천 주류 (Recommended Drinks)</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 복분자음 -->
+                <div class="p-5 rounded-2xl bg-brand-light border border-brand-sand hover:border-brand-gold/30 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-brand-dark text-sm sm:text-base">복분자음</h4>
+                            <span class="text-brand-gold font-bold font-serif text-sm">10,000₩</span>
+                        </div>
+                        <span class="inline-block text-[9px] bg-red-50 text-red-700 px-2 py-0.5 rounded font-bold mb-3 border border-red-200">고창산 복분자 100%</span>
+                    </div>
+                    <p class="text-[11px] text-brand-gray font-light">
+                        엄선된 고창 100% 복분자로 양조하여 생고기의 진한 맛과 기가 막힌 궁합을 선사합니다.
+                    </p>
+                </div>
+
+                <!-- 산사춘 -->
+                <div class="p-5 rounded-2xl bg-brand-light border border-brand-sand hover:border-brand-gold/30 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-brand-dark text-sm sm:text-base">산사춘</h4>
+                            <span class="text-brand-gold font-bold font-serif text-sm">7,000₩</span>
+                        </div>
+                        <span class="inline-block text-[9px] bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-bold mb-3 border border-amber-200">새콤달콤한 전통주</span>
+                    </div>
+                    <p class="text-[11px] text-brand-gray font-light">
+                        붉은 산사나무 열매의 은은하고 과일 향 가득한 청량함이 고기 식탁을 우아하게 채워줍니다.
+                    </p>
+                </div>
+
+                <!-- 소주/맥주 -->
+                <div class="p-5 rounded-2xl bg-brand-light border border-brand-sand hover:border-brand-gold/30 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-brand-dark text-sm sm:text-base">소주 / 맥주</h4>
+                            <span class="text-brand-gold font-bold font-serif text-sm">4,000₩</span>
+                        </div>
+                        <span class="inline-block text-[9px] bg-brand-sand text-brand-dark px-2 py-0.5 rounded font-bold mb-3">그릴링 필수 반주</span>
+                    </div>
+                    <p class="text-[11px] text-brand-gray font-light">
+                        기름진 목 넘김을 개운하고 시원하게 씻어내어 줄 대한민국 대표 국민 주류 라인업입니다.
+                    </p>
+                </div>
+
+                <!-- 음료수 -->
+                <div class="p-5 rounded-2xl bg-brand-light border border-brand-sand hover:border-brand-gold/30 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-bold text-brand-dark text-sm sm:text-base">음료수</h4>
+                            <span class="text-brand-gold font-bold font-serif text-sm">2,000₩</span>
+                        </div>
+                        <span class="inline-block text-[9px] bg-teal-50 text-teal-700 px-2 py-0.5 rounded font-bold mb-3 border border-teal-200">시원한 탄산</span>
+                    </div>
+                    <p class="text-[11px] text-brand-gray font-light">
+                        가족 나들이 길의 아이들과 운전자를 위한 톡 쏘는 청량한 음료입니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Authentic bottom note from 다운로드.jpg -->
+            <div class="mt-8 p-4 rounded-2xl bg-brand-sand/30 border border-brand-gold/30 text-center">
+                <p class="text-brand-dark text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center flex-wrap gap-1">
+                    <span class="text-brand-gold"><i class="fa-solid fa-certificate"></i></span>
+                    저희 업소는 <strong class="text-brand-dark font-extrabold underline decoration-brand-gold underline-offset-4">국내산 쌀, 배추(김치), 고춧가루</strong>만 사용하여 안심하고 드실 수 있습니다.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Meat Thickness Simulator -->
+<section id="customizer" class="relative py-24 bg-white border-t border-brand-sand overflow-hidden">
+    <div class="absolute bottom-0 right-0 w-80 h-80 bg-brand-sand/30 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Configurator Panel -->
+            <div class="lg:col-span-5 space-y-6 reveal">
+                <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block">Butcher Lab</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-brand-dark leading-tight">
+                    방아실 생고기 두께 가이드
+                </h2>
+                <p class="text-brand-gray text-xs sm:text-sm font-light">
+                    방아실 생고기는 정육 두께에 따라 참숯 그릴 위에서의 식감이 극적으로 변모합니다. 슬라이더를 통해 맞춤 두께를 선택하고 예산을 산출해 보세요.
+                </p>
+
+                <!-- Thickness Slider Controls -->
+                <div class="space-y-4 pt-4 border-t border-brand-sand">
+                    <div class="flex justify-between items-center">
+                        <label class="text-sm font-semibold text-brand-dark">고기 단면 두께 조절</label>
+                        <span id="thickness-badge" class="px-3 py-1 bg-brand-sand text-brand-dark rounded-full text-xs font-bold tracking-wider border border-brand-gold/30">
+                            2.5cm (오리지널 뭉턱이)
+                        </span>
+                    </div>
+                    <input type="range" id="meat-thickness" min="1.5" max="4.0" step="0.5" value="2.5" oninput="updateMeatVisualization()" class="w-full accent-brand-gold bg-brand-sand h-2 rounded-lg cursor-pointer">
+                    <div class="flex justify-between text-[10px] text-brand-gray font-medium">
+                        <span>1.5cm (얇고 고소함)</span>
+                        <span>4.0cm (최고의 바베큐 두께)</span>
+                    </div>
+                </div>
+
+                <!-- Corrected Configuration Calculator to use 250g and 13000₩ -->
+                <div class="space-y-3 pt-4">
+                    <label class="text-sm font-semibold text-brand-dark block">식사 상차림 용량 계산 (1인분 = 250g 기준)</label>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="changeQuantity(-1)" class="w-10 h-10 rounded-full bg-brand-sand border border-brand-sand flex items-center justify-center hover:border-brand-gold text-brand-dark font-bold transition-all shadow-sm">-</button>
+                        <span id="meat-quantity" class="text-xl font-serif font-bold text-brand-dark w-12 text-center">3</span>
+                        <button onclick="changeQuantity(1)" class="w-10 h-10 rounded-full bg-brand-sand border border-brand-sand flex items-center justify-center hover:border-brand-gold text-brand-dark font-bold transition-all shadow-sm">+</button>
+                        <span class="text-sm text-brand-gray" id="weight-display">(750g 분량)</span>
+                    </div>
+                </div>
+
+                <!-- Add Extra Combinations from 다운로드.jpg -->
+                <div class="space-y-3 pt-4">
+                    <label class="text-sm font-semibold text-brand-dark block">추가 찌개 & 식사 포함하기</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="toggleExtra('stew')" id="extra-stew" class="py-3 px-4 rounded-xl border border-brand-sand bg-brand-light hover:border-brand-gold/50 text-left transition-all text-xs flex justify-between items-center shadow-sm">
+                            <span>된장찌개 (국내산)</span>
+                            <span class="text-brand-gold font-bold text-[11px]">+1,000₩</span>
+                        </button>
+                        <button onclick="toggleExtra('rice')" id="extra-rice" class="py-3 px-4 rounded-xl border border-brand-sand bg-brand-light hover:border-brand-gold/50 text-left transition-all text-xs flex justify-between items-center shadow-sm">
+                            <span>공기밥 (국내산 쌀)</span>
+                            <span class="text-brand-gold font-bold text-[11px]">+1,000₩</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualization Display Card -->
+            <div class="lg:col-span-7 bg-brand-light rounded-3xl border border-brand-sand p-8 flex flex-col justify-between shadow-lg relative min-h-[420px] reveal">
+                <!-- Watermark -->
+                <div class="absolute top-6 right-6 text-brand-sand/50 font-serif font-black text-6xl tracking-widest select-none pointer-events-none">1992</div>
+
+                <div>
+                    <h4 class="font-serif font-bold text-brand-dark text-lg mb-6"><i class="fa-solid fa-utensils text-brand-gold mr-2"></i> 실시간 그릴링 단면도 예측</h4>
+                    
+                    <!-- Meat graphic visually changing size -->
+                    <div class="h-44 w-full bg-white rounded-2xl relative overflow-hidden flex items-center justify-center border border-brand-sand shadow-inner">
+                        <div class="absolute inset-0 bg-radial-gradient from-brand-sand/20 to-transparent"></div>
+                        
+                        <!-- Premium style meat visualizer -->
+                        <div id="meat-visual" class="bg-gradient-to-r from-red-500 via-rose-300 to-red-400 rounded-xl shadow-md transition-all duration-300 border border-red-300 relative" style="width: 250px; height: 50px;">
+                            <div class="absolute inset-0 opacity-20 flex justify-between px-6 py-2 overflow-hidden">
+                                <div class="w-1.5 h-full bg-white transform rotate-12 rounded-full"></div>
+                                <div class="w-1 h-full bg-white transform rotate-12 rounded-full"></div>
+                                <div class="w-2.5 h-full bg-white transform rotate-12 rounded-full"></div>
+                            </div>
+                            <!-- Thickness Scale Tag -->
+                            <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-[9px] font-bold text-brand-dark tracking-widest bg-brand-sand px-2 py-0.5 rounded border border-brand-gold/30">
+                                <span id="thickness-scale-text">2.5cm THICK</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommended Tip -->
+                    <div class="mt-6 p-4 rounded-xl bg-brand-sand/50 border border-brand-gold/20">
+                        <span class="text-xs text-brand-dark font-bold uppercase tracking-wider block mb-1"><i class="fa-solid fa-circle-info mr-1 text-brand-gold"></i> 이상적인 굽기 가이드</span>
+                        <p class="text-xs text-brand-gray leading-relaxed font-light" id="grill-tip">
+                            오리지널 2.5cm 두께는 숯불 위에서 첫 3분간 강하게 표면을 익히고(시어링), 뒤집은 뒤 한 입 크기 뭉텅이로 잘라 굴리듯이 구우면 겉은 바삭하고 촉촉한 최고의 맛을 자랑합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Price summary and action -->
+                <div class="mt-8 pt-6 border-t border-brand-sand flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="text-center sm:text-left">
+                        <span class="text-xs text-brand-gray block">대략적인 차림 비용 예산</span>
+                        <span id="total-price" class="font-serif font-extrabold text-3xl text-brand-dark tracking-tight">39,000₩</span>
+                    </div>
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <a href="tel:0437325653" class="text-center px-6 py-3.5 rounded-full bg-brand-dark hover:bg-brand-gold text-white hover:text-brand-dark font-bold text-xs tracking-widest uppercase transition-all duration-300 shadow-sm flex items-center justify-center">
+                            <i class="fa-solid fa-phone mr-1.5"></i> 전화로 주문 물어보기
+                        </a>
+                        <button onclick="copyConfiguration()" class="px-4 py-3.5 rounded-full border border-brand-gold/40 bg-white hover:bg-brand-sand text-brand-gold transition-all duration-300" title="구성 복사하기">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Social Proof Section -->
+<section class="relative py-24 bg-brand-light overflow-hidden border-t border-brand-sand/30">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block mb-2">Customer Voice</span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-extrabold text-brand-dark mb-4">대청호가 기억하는 최고의 평</h2>
+            <p class="text-brand-gray text-sm font-light">
+                수십 킬로미터 드라이브 끝에 옥천 군북면 방아실길에 다다른 식객들이 고기의 아삭한 맛에 기쁨을 표한 기록입니다.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="rounded-3xl bg-white border border-brand-sand p-8 flex flex-col justify-between hover:border-brand-gold/40 transition-all shadow-sm">
+                <div>
+                    <div class="flex items-center space-x-1 text-brand-gold mb-6">
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <span class="text-brand-gray text-xs ml-2">5.0</span>
+                    </div>
+                    <blockquote class="text-brand-dark text-sm leading-relaxed font-light italic mb-6">
+                        "부소담악 드라이브를 다녀오며 점심 코스로 필수 방문하는 곳입니다. 가벼운 밑반찬이지만 오로지 뭉텅뭉텅 썰어주시는 초신선 생고기가 말도 안 되는 아삭함과 쫄깃함을 자랑해요. 대전 인근에서 단연 최고입니다."
+                    </blockquote>
+                </div>
+                <div class="flex items-center space-x-3 pt-6 border-t border-brand-sand">
+                    <div class="w-10 h-10 rounded-full bg-brand-sand flex items-center justify-center text-brand-gold font-bold text-xs">장*원</div>
+                    <div>
+                        <span class="block text-brand-dark text-xs font-bold">대청호 명물 가이드</span>
+                        <span class="text-[10px] text-brand-gray">2026.06 방문객</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="rounded-3xl bg-white border border-brand-sand p-8 flex flex-col justify-between hover:border-brand-gold/40 transition-all shadow-sm">
+                <div>
+                    <div class="flex items-center space-x-1 text-brand-gold mb-6">
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <span class="text-brand-gray text-xs ml-2">5.0</span>
+                    </div>
+                    <blockquote class="text-brand-dark text-sm leading-relaxed font-light italic mb-6">
+                        "가족 나들이 후 식사 자리를 찾다 알게 되었는데 골드-화이트 톤 리브랜딩으로 훨씬 우아하고 깨끗해졌더군요. 주말 대기 시간이 전혀 아깝지 않은 초신선 무냉동 흑돼지의 식감은 정말 경이로웠습니다."
+                    </blockquote>
+                </div>
+                <div class="flex items-center space-x-3 pt-6 border-t border-brand-sand">
+                    <div class="w-10 h-10 rounded-full bg-brand-sand flex items-center justify-center text-brand-gold font-bold text-xs">임*지</div>
+                    <div>
+                        <span class="block text-brand-dark text-xs font-bold">주말 미식 탐방가</span>
+                        <span class="text-[10px] text-brand-gray">2026.05 방문객</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="rounded-3xl bg-white border border-brand-sand p-8 flex flex-col justify-between hover:border-brand-gold/40 transition-all shadow-sm">
+                <div>
+                    <div class="flex items-center space-x-1 text-brand-gold mb-6">
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <i class="fa-solid fa-star text-xs"></i>
+                        <span class="text-brand-gray text-xs ml-2">5.0</span>
+                    </div>
+                    <blockquote class="text-brand-dark text-sm leading-relaxed font-light italic mb-6">
+                        "대청호 나들이 후 찾아왔는데, 정말 대만족입니다. 천원 된장찌개도 깊은 전통 메주의 맛이 배어있어 따끈한 공기밥에 비벼 먹기 일품이었습니다. 원산지가 모두 국내산이라 한 번 더 안심이 갑니다."
+                    </blockquote>
+                </div>
+                <div class="flex items-center space-x-3 pt-6 border-t border-brand-sand">
+                    <div class="w-10 h-10 rounded-full bg-brand-sand flex items-center justify-center text-brand-gold font-bold text-xs">권*혁</div>
+                    <div>
+                        <span class="block text-brand-dark text-xs font-bold">옥천 현지 블로거</span>
+                        <span class="text-[10px] text-brand-gray">2026.06 방문객</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location & Driving Guide -->
+<section id="location" class="relative py-24 bg-white overflow-hidden border-t border-brand-sand">
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Map Card & Access Information -->
+            <div class="lg:col-span-7 space-y-6 reveal">
+                <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block">The Location</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-brand-dark">
+                    대청호 은빛 물길 따라 오시는 길
+                </h2>
+                
+                <div class="relative bg-brand-light rounded-3xl border border-brand-sand p-6 overflow-hidden min-h-[300px] flex flex-col justify-between shadow-sm">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between border-b border-brand-sand pb-3">
+                            <span class="text-xs text-brand-gray font-semibold tracking-wider"><i class="fa-solid fa-map-location-dot text-brand-gold mr-1"></i> 주차장 및 소재지 안내</span>
+                            <span class="text-[10px] bg-brand-sand text-brand-dark py-0.5 px-2 rounded-full font-bold border border-brand-gold/30">무료 광대 주차장</span>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="font-serif text-brand-dark font-bold text-xl">충청북도 옥천군 군북면 방아실길 9</h3>
+                            <p class="text-xs text-brand-gray leading-relaxed font-light">
+                                대청호 회남대교 드라이브 로드를 경유하여 ‘방아실길’ 마을 진입 초입에 위치합니다. 수십 대 이상 대규모 동시 주차 가능한 야외 무료 주차장 완비.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Travel route timing details -->
+                    <div class="grid grid-cols-3 gap-4 py-4 pt-6 border-t border-brand-sand text-center">
+                        <div class="bg-white p-3 rounded-xl border border-brand-sand shadow-sm">
+                            <span class="block text-brand-dark font-bold text-xs"><i class="fa-solid fa-car mr-1 text-brand-gold"></i> 대전시청 출발</span>
+                            <span class="text-[10px] text-brand-gray block mt-1">자차 약 35분</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-brand-sand shadow-sm">
+                            <span class="block text-brand-dark font-bold text-xs"><i class="fa-solid fa-car-side mr-1 text-brand-gold"></i> 옥천 IC 출발</span>
+                            <span class="text-[10px] text-brand-gray block mt-1">자차 약 15분</span>
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-brand-sand shadow-sm">
+                            <span class="block text-brand-dark font-bold text-xs"><i class="fa-solid fa-mountain-sun mr-1 text-brand-gold"></i> 부소담악</span>
+                            <span class="text-[10px] text-brand-gray block mt-1">자차 약 10분</span>
+                        </div>
+                    </div>
+
+                    <!-- Clean modern external links to major Map applications -->
+                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 mt-4">
+                        <button onclick="copyToClipboard('충청북도 옥천군 군북면 방아실길 9')" class="flex-1 text-center py-2.5 rounded-lg border border-brand-gold/40 bg-white text-brand-gold hover:bg-brand-sand font-bold text-xs transition-colors shadow-sm">
+                            <i class="fa-regular fa-clone mr-1"></i> 지번 주소 복사하기
+                        </button>
+                        <a href="https://map.naver.com/" target="_blank" class="flex-1 text-center py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-750 text-white font-bold text-xs transition-colors shadow-sm flex items-center justify-center">
+                            네이버 지도로 바로 탐색 <i class="fa-solid fa-chevron-right ml-1 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Surrounding Tourist Spots Guide -->
+            <div class="lg:col-span-5 space-y-6 reveal">
+                <h4 class="font-serif text-brand-dark font-bold text-lg border-b border-brand-gold/30 pb-2">
+                    주변 힐링 드라이브 코스 추천
+                </h4>
+                <p class="text-xs text-brand-gray leading-relaxed font-light">
+                    방아실 돼지집에서 든든하게 식사한 후, 혹은 가벼운 산책 전후로 들리기 좋은 옥천의 대표 자연 경관입니다.
+                </p>
+
+                <div class="space-y-4">
+                    <!-- Spot 1 -->
+                    <div class="group flex items-center space-x-4 p-4 rounded-2xl bg-brand-light border border-brand-sand hover:border-brand-gold/30 transition-all shadow-sm">
+                        <div class="p-3 bg-white rounded-xl text-brand-gold shadow-sm">
+                            <i class="fa-solid fa-water text-lg"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-brand-dark group-hover:text-brand-gold transition-colors">부소담악 (물 위의 병풍바위)</h5>
+                            <p class="text-[11px] text-brand-gray mt-0.5">우뚝 솟아오른 기암절벽이 길게 뻗은 대청호 최고의 절경 스팟.</p>
+                        </div>
+                    </div>
+
+                    <!-- Spot 2 -->
+                    <div class="group flex items-center space-x-4 p-4 rounded-2xl bg-brand-light border border-brand-sand hover:border-brand-gold/30 transition-all shadow-sm">
+                        <div class="p-3 bg-white rounded-xl text-brand-gold shadow-sm">
+                            <i class="fa-solid fa-feather-pointed text-lg"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-brand-dark group-hover:text-brand-gold transition-colors">정지용 시인 생가 & 문학관</h5>
+                            <p class="text-[11px] text-brand-gray mt-0.5">시 '향수'의 정취가 가득 고여 있는 아름다운 문학 역사거리 공원.</p>
+                        </div>
+                    </div>
+
+                    <!-- Spot 3 -->
+                    <div class="group flex items-center space-x-4 p-4 rounded-2xl bg-brand-light border border-brand-sand hover:border-brand-gold/30 transition-all shadow-sm">
+                        <div class="p-3 bg-white rounded-xl text-brand-gold shadow-sm">
+                            <i class="fa-solid fa-tree text-lg"></i>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-brand-dark group-hover:text-brand-gold transition-colors">대청호 오백리길 수변 데크길</h5>
+                            <p class="text-[11px] text-brand-gray mt-0.5">대청호수 바람을 맞으며 평화롭게 라이딩과 산책을 조율하기 좋은 둘레길.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="relative py-24 bg-brand-light border-t border-brand-sand overflow-hidden">
+    <div class="max-w-4xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 reveal">
+            <span class="text-brand-gold text-xs font-bold uppercase tracking-widest block mb-2">Frequently Asked</span>
+            <h2 class="font-serif text-3xl font-extrabold text-brand-dark">가장 자주 묻는 로컬 질문</h2>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <div class="rounded-2xl bg-white border border-brand-sand overflow-hidden shadow-sm">
+                <button onclick="toggleFAQ(1)" class="w-full py-5 px-6 flex justify-between items-center text-left font-bold text-brand-dark hover:text-brand-gold transition-colors focus:outline-none text-sm sm:text-base">
+                    <span>Q. 주말 대기 시간이 긴 편인가요? 단체 연락은 어떻게 하나요?</span>
+                    <i class="fa-solid fa-chevron-down text-brand-gold text-xs transition-transform duration-300" id="faq-icon-1"></i>
+                </button>
+                <div class="px-6 pb-5 hidden text-xs sm:text-sm text-brand-gray font-light leading-relaxed border-t border-brand-sand pt-4" id="faq-answer-1">
+                    주말 한낮 피크 타임(12시~14시)에는 대청호 드라이브 관광객 분들로 테이블이 혼잡할 수 있습니다. 8인 이상의 단체 방문이 필요하시거나 정해진 시간대의 현장 상황을 안내받으시려면, 매장 유선 전화(<span class="text-brand-dark font-bold">043-732-5653</span>)로 편히 연락 주시면 친절하게 도와드리겠습니다.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="rounded-2xl bg-white border border-brand-sand overflow-hidden shadow-sm">
+                <button onclick="toggleFAQ(2)" class="w-full py-5 px-6 flex justify-between items-center text-left font-bold text-brand-dark hover:text-brand-gold transition-colors focus:outline-none text-sm sm:text-base">
+                    <span>Q. 고기의 1인분 중량이 어떻게 되나요? 진짜 무냉동 생고기인가요?</span>
+                    <i class="fa-solid fa-chevron-down text-brand-gold text-xs transition-transform duration-300" id="faq-icon-2"></i>
+                </button>
+                <div class="px-6 pb-5 hidden text-xs sm:text-sm text-brand-gray font-light leading-relaxed border-t border-brand-sand pt-4" id="faq-answer-2">
+                    네, 저희는 엄선된 품질의 무냉동 국내산 생돈육을 뭉턱하게 썰어 제공합니다. 일반 삼겹살 매장의 1인분 중량(150g~180g)과 달리, 저희 방아실 돼지집은 **1인분 기준 푸짐하고 묵직한 250g(13,000원)**으로 정직하게 정육하여 가성비와 품질을 온전히 지키고 있습니다.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="rounded-2xl bg-white border border-brand-sand overflow-hidden shadow-sm">
+                <button onclick="toggleFAQ(3)" class="w-full py-5 px-6 flex justify-between items-center text-left font-bold text-brand-dark hover:text-brand-gold transition-colors focus:outline-none text-sm sm:text-base">
+                    <span>Q. 휴무일과 영업시간, 브레이크 타임이 설정되어 있나요?</span>
+                    <i class="fa-solid fa-chevron-down text-brand-gold text-xs transition-transform duration-300" id="faq-icon-3"></i>
+                </button>
+                <div class="px-6 pb-5 hidden text-xs sm:text-sm text-brand-gray font-light leading-relaxed border-t border-brand-sand pt-4" id="faq-answer-3">
+                    방아실 돼지집은 정기 휴일 없이 **연중무휴(명절 당일 정상 영업)**로 늘 문을 활짝 열어두고 있습니다. 매장 영업 시간은 오전 11:00부터 저녁 20:00까지이며, 준비된 당일 원육 정비 시간은 평일 14:30~16:00입니다. (마지막 주문은 19:20 정시 마감)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="bg-brand-light border-t border-brand-sand pt-20 pb-12 text-brand-gray text-sm">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-16 border-b border-brand-sand">
+            
+            <!-- Brand Signature -->
+            <div class="space-y-4">
+                <a href="#" class="flex items-center space-x-3">
+                    <div class="w-9 h-9 rounded-full border border-brand-gold flex items-center justify-center bg-white shadow-sm">
+                        <i class="fa-solid fa-clover text-brand-gold text-sm"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold text-lg tracking-widest text-brand-dark block">방아실 돼지집</span>
+                    </div>
+                </a>
+                <p class="text-xs text-brand-gray leading-relaxed font-light">
+                    대청호의 은은한 사계절 물결과 30년 넘게 고수해 온 신뢰할 수 있는 육부 원칙을 지키며 로컬 고기 식사 문화의 자부심을 키워갑니다.
+                </p>
+                <div class="flex space-x-3 text-brand-gold pt-2">
+                    <a href="#" class="hover:text-brand-dark transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    <a href="#location" class="hover:text-brand-dark transition-colors"><i class="fa-solid fa-location-dot text-lg"></i></a>
+                    <a href="tel:0437325653" class="hover:text-brand-dark transition-colors"><i class="fa-solid fa-phone text-lg"></i></a>
+                </div>
+            </div>
+
+            <!-- Operating Contacts -->
+            <div class="space-y-4">
+                <h5 class="text-xs font-bold uppercase tracking-widest text-brand-dark border-l-2 border-brand-gold pl-2">문의처 및 편의</h5>
+                <ul class="space-y-2 text-xs">
+                    <li>대표 문의번호: <a href="tel:0437325653" class="text-brand-dark font-bold hover:underline">043-732-5653</a></li>
+                    <li>주차 여건: <span class="text-brand-dark font-medium">야외 대형 주차공간 완비 (무료)</span></li>
+                    <li>기타 편의: <span class="text-brand-gray">포장 판매 지원 / 유아용 보조의자 비치 / 단체 테이블 세팅 가능</span></li>
+                </ul>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="space-y-4">
+                <h5 class="text-xs font-bold uppercase tracking-widest text-brand-dark border-l-2 border-brand-gold pl-2">운영 일정</h5>
+                <ul class="space-y-2 text-xs">
+                    <li>매일 운영: <span class="text-brand-dark font-medium">11:00 ~ 20:00</span></li>
+                    <li>재정비 시간(브레이크): <span class="text-brand-gray">평일 14:30 ~ 16:00</span></li>
+                    <li>라스트 오더: <span class="text-brand-gold font-bold">오후 19:20분 최종 마감</span></li>
+                    <li>휴무 정보: <span class="text-emerald-700 font-bold">연중무휴 (명절 및 주말 상시정상운영)</span></li>
+                </ul>
+            </div>
+
+            <!-- Premium Statement -->
+            <div class="space-y-4">
+                <h5 class="text-xs font-bold uppercase tracking-widest text-brand-dark border-l-2 border-brand-gold pl-2">원산지 투명성</h5>
+                <p class="text-xs text-brand-gray leading-relaxed font-light">
+                    "방아실 돼지집은 엄선된 원산지 원칙에 따라 정직한 국내산 원육과 쌀, 배추, 고춧가루를 엄격히 고집하여 늘 건강하고 온전한 고소함을 대청호 풍경에 약속합니다."
+                </p>
+            </div>
+        </div>
+
+        <!-- Copyright & Information -->
+        <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-gray font-light">
+            <span>&copy; 2026 BANGASIL PORK HOUSE. All Rights Reserved.</span>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-brand-dark transition-colors">개인정보처리방침</a>
+                <a href="#" class="hover:text-brand-dark transition-colors">이용약관</a>
+                <a href="#location" class="hover:text-brand-dark transition-colors">찾아오시는 길</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Toast Container -->
+<div id="toast-container" class="fixed bottom-6 right-6 z-50 space-y-3 pointer-events-none"></div>
+
+<script>
+    // Reveal Scroll effect
+    window.addEventListener('scroll', () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            const elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                el.classList.add('active');
+            }
+        });
+    });
+
+    // Run once at start
+    setTimeout(() => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach(el => el.classList.add('active'));
+    }, 100);
+
+    // Navbar translucent effect change
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('bg-white/95', 'shadow-md', 'py-1');
+            navbar.classList.remove('bg-brand-light/80');
+        } else {
+            navbar.classList.remove('bg-white/95', 'shadow-md', 'py-1');
+            navbar.classList.add('bg-brand-light/80');
+        }
+    });
+
+    // Mobile Menu handler
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const icon = document.getElementById('menu-icon');
+        menu.classList.toggle('hidden');
+        if (menu.classList.contains('hidden')) {
+            icon.className = 'fa-solid fa-bars text-2xl';
+        } else {
+            icon.className = 'fa-solid fa-xmark text-2xl';
+        }
+    }
+
+    // Scroll to Customizer function
+    function scrollToCustomizer() {
+        document.getElementById('customizer').scrollIntoView({ behavior: 'smooth' });
+        showToast("🥩 생고기 두께 및 시뮬레이터 구역으로 이동했습니다.");
+    }
+
+    // Thickness Simulator State - Synchronized with 다운로드.jpg pricing
+    let meatThickness = 2.5;
+    let meatQuantity = 3;
+    let extras = {
+        stew: false, // 된장찌개 (+1,000₩)
+        rice: false  // 공기밥 (+1,000₩)
+    };
+
+    const PRICE_PER_SERVING = 13000; // 생고기 1인분 (250g) = 13,000원
+    const PRICE_STEW = 1000;         // 된장찌개 = 1,000원
+    const PRICE_RICE = 1000;         // 공기밥 = 1,000원
+
+    function updateMeatVisualization() {
+        const thicknessSlider = document.getElementById('meat-thickness');
+        meatThickness = parseFloat(thicknessSlider.value);
+        
+        const badge = document.getElementById('thickness-badge');
+        let text = `${meatThickness.toFixed(1)}cm `;
+        let tipText = "";
+
+        if (meatThickness <= 1.5) {
+            text += "(신속형 슬라이스)";
+            tipText = "1.5cm 두께는 얇고 부드러워 숯불 위에서 순식간에 구워집니다. 과자처럼 바삭하면서도 고소한 특유의 껍데기 맛을 가볍고 담백하게 즐기기에 제격입니다.";
+        } else if (meatThickness <= 2.5) {
+            text += "(오리지널 뭉턱이)";
+            tipText = "오리지널 2.5cm 두께는 대청호 정통 컷입니다. 겉은 바삭하고 베어 물었을 때 한 알 한 알 터져나오는 쫄깃한 식감과 촉촉함의 정수로 가장 추천하는 두께입니다.";
+        } else if (meatThickness <= 3.5) {
+            text += "(스테이크 에디션)";
+            tipText = "3.5cm의 육즙 가두기 전용 두께입니다. 참숯의 복사열로 양면을 꼼꼼히 익힌 후(시어링), 은은한 그릴 가장자리에서 굴려가며 구워 속을 부드럽게 지탱하면 기막힌 풍미가 납니다.";
+        } else {
+            text += "(방아실 스페셜 컷)";
+            tipText = "4.0cm의 마스터피스 극한 두께. 참숯불 다루기에 능숙한 베테랑 분들께 주로 권하며, 속이 가득 메워진 육汁의 묵직함을 최고의 식감과 함께 아낌없이 제공합니다.";
+        }
+
+        badge.innerText = text;
+        document.getElementById('grill-tip').innerText = tipText;
+
+        // Visual size mapping
+        const meatVisual = document.getElementById('meat-visual');
+        const minH = 30;
+        const maxH = 110;
+        const mappedHeight = minH + ((meatThickness - 1.5) / (4.0 - 1.5)) * (maxH - minH);
+        meatVisual.style.height = `${mappedHeight}px`;
+
+        document.getElementById('thickness-scale-text').innerText = `${meatThickness.toFixed(1)}cm THICK`;
+
+        calculateTotalPrice();
+    }
+
+    function changeQuantity(val) {
+        meatQuantity += val;
+        if (meatQuantity < 1) meatQuantity = 1;
+        document.getElementById('meat-quantity').innerText = meatQuantity;
+        // Updated to use 250g portions
+        document.getElementById('weight-display').innerText = `(${meatQuantity * 250}g 분량)`;
+        calculateTotalPrice();
+    }
+
+    function toggleExtra(extraType) {
+        extras[extraType] = !extras[extraType];
+        const btn = document.getElementById(`extra-${extraType}`);
+        
+        if (extras[extraType]) {
+            btn.classList.add('border-brand-gold', 'bg-brand-sand/50');
+            btn.classList.remove('border-brand-sand', 'bg-brand-light');
+        } else {
+            btn.classList.remove('border-brand-gold', 'bg-brand-sand/50');
+            btn.classList.add('border-brand-sand', 'bg-brand-light');
+        }
+        calculateTotalPrice();
+    }
+
+    function calculateTotalPrice() {
+        let total = meatQuantity * PRICE_PER_SERVING;
+        if (extras.stew) total += PRICE_STEW;
+        if (extras.rice) total += PRICE_RICE;
+
+        document.getElementById('total-price').innerText = `${total.toLocaleString()}₩`;
+    }
+
+    // Copy configuration data to clipboard
+    function copyConfiguration() {
+        const textToCopy = `[방아실 돼지집 맞춤 구성]\n두께: ${meatThickness.toFixed(1)}cm\n수량: ${meatQuantity}인분 (${meatQuantity * 250}g)\n추가 구성: 된장찌개(${extras.stew ? 'O':'X'}), 공기밥(${extras.rice ? 'O':'X'})\n예상 총 비용: ${document.getElementById('total-price').innerText}`;
+        
+        const tempTextarea = document.createElement('textarea');
+        tempTextarea.value = textToCopy;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempTextarea);
+        
+        showToast("📋 선택하신 맞춤 두께와 수량 정보가 클립보드에 복사되었습니다! 매장 연락 시 활용해 주세요.");
+    }
+
+    // Classic address copying function
+    function copyToClipboard(text) {
+        const tempText = document.createElement('textarea');
+        tempText.value = text;
+        document.body.appendChild(tempText);
+        tempText.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempText);
+        showToast("📍 주소가 복사되었습니다. 목적지 검색 시 활용해 보세요!");
+    }
+
+    // FAQ Accordion
+    function toggleFAQ(idx) {
+        const answer = document.getElementById(`faq-answer-${idx}`);
+        const icon = document.getElementById(`faq-icon-${idx}`);
+        
+        answer.classList.toggle('hidden');
+        if (answer.classList.contains('hidden')) {
+            icon.style.transform = "rotate(0deg)";
+        } else {
+            icon.style.transform = "rotate(180deg)";
+        }
+    }
+
+    // Custom Toast alert system
+    function showToast(message) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `p-4 rounded-2xl border border-brand-gold/30 bg-white/95 text-xs sm:text-sm font-semibold shadow-xl transition-all duration-300 transform translate-y-5 opacity-0 max-w-sm pointer-events-auto flex items-start space-x-3 text-brand-dark`;
+        
+        toast.innerHTML = `
+            <div class="mt-0.5 text-brand-gold"><i class="fa-solid fa-bell"></i></div>
+            <div class="flex-1">${message}</div>
+        `;
+
+        container.appendChild(toast);
+
+        setTimeout(() => {
+            toast.classList.remove('translate-y-5', 'opacity-0');
+        }, 10);
+
+        setTimeout(() => {
+            toast.classList.add('translate-y-2', 'opacity-0');
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        }, 4500);
+    }
+
+    // Initialize values on first load
+    updateMeatVisualization();
+</script>
+
+</body>
+</html>
